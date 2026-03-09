@@ -16,14 +16,14 @@ from flask import Flask, request, jsonify, redirect, render_template_string, ses
 # ══════════════════════════════════════════
 # CONFIG — fill these in
 # ══════════════════════════════════════════
-DISCORD_CLIENT_ID     = "YOUR_CLIENT_ID"
-DISCORD_CLIENT_SECRET = "YOUR_CLIENT_SECRET"
-DISCORD_BOT_TOKEN     = "YOUR_BOT_TOKEN"
+DISCORD_CLIENT_ID     = "1083705317336039435"
+DISCORD_CLIENT_SECRET = "4nriOlJfo5OBjRgq7VfyLDkhGlLgpSg9"
+DISCORD_BOT_TOKEN     = "MTM1NDQyNzU2MTUyMTcxMzI1Mg.GGr9_5.VYEPb7GFiveUbtzaj3a5FaZ3xXaC4vnYs2hHAs"  # ⚠️ Paste your new token here
 DISCORD_GUILD_ID      = 1398735885595316257
-DISCORD_VERIFIED_ROLE = "YOUR_VERIFIED_ROLE_ID"
+DISCORD_VERIFIED_ROLE = "1480607816866861187"
 BOT_API_SECRET        = "1234"
-ADMIN_PASSWORD        = "YOUR_ADMIN_PASSWORD"
-SITE_URL              = "https://YOUR-APP.onrender.com"   # e.g. https://chop-verify.onrender.com
+ADMIN_PASSWORD        = "admin123"
+SITE_URL              = "https://bruhbruh.onrender.com"
 SITE_NAME             = "CHOP Bot Verification"
 FLASK_SECRET          = secrets.token_hex(32)
 # ══════════════════════════════════════════
