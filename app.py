@@ -18,7 +18,6 @@ from flask import Flask, request, jsonify, redirect, render_template_string, ses
 # ══════════════════════════════════════════
 DISCORD_CLIENT_ID     = "1083705317336039435"
 DISCORD_CLIENT_SECRET = "4nriOlJfo5OBjRgq7VfyLDkhGlLgpSg9"
-DISCORD_BOT_TOKEN     = "MTM1NDQyNzU2MTUyMTcxMzI1Mg.GyI_Ie.0df1zcXvVyqisca7ATgw_tHA4gco4a2LSQP600"  # ⚠️ Paste your new token here
 DISCORD_GUILD_ID      = 1398735885595316257
 DISCORD_VERIFIED_ROLE = "1480607816866861187"
 BOT_API_SECRET        = "1234"
