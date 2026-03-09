@@ -18,6 +18,7 @@ from flask import Flask, request, jsonify, redirect, render_template_string, ses
 # ══════════════════════════════════════════
 DISCORD_CLIENT_ID     = "1083705317336039435"
 DISCORD_CLIENT_SECRET = "4nriOlJfo5OBjRgq7VfyLDkhGlLgpSg9"
+DISCORD_BOT_TOKEN     = os.environ.get("DISCORD_BOT_TOKEN", "")
 DISCORD_GUILD_ID      = 1398735885595316257
 DISCORD_VERIFIED_ROLE = "1480607816866861187"
 BOT_API_SECRET        = "1234"
