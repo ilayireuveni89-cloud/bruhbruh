@@ -15,7 +15,9 @@ end)
 -- =============================================
 
 local function GenerateReportId(prefix)
-    return prefix .. '-' .. math.random(100000, 999999)
+    local timestamp = os.time()
+    local random = math.random(1000, 9999)
+    return prefix .. '-' .. timestamp .. '-' .. random
 end
 
 local function GetOfficerData(source)
@@ -100,6 +102,7 @@ RegisterNetEvent('il_police:server:createTrafficReport', function(data)
     if not officer then return end
 
     local reportId = GenerateReportId('TR')
+    data.fineAmount = math.min(math.max(tonumber(data.fineAmount) or 0, 0), Config.MaxFine)
 
     MySQL.insert('INSERT INTO il_police_traffic_reports (report_id, officer_identifier, officer_name, officer_badge, citizen_name, citizen_id, vehicle_plate, vehicle_model, violation, fine_amount, location, notes) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', {
         reportId,
@@ -111,7 +114,7 @@ RegisterNetEvent('il_police:server:createTrafficReport', function(data)
         data.vehiclePlate or '',
         data.vehicleModel or '',
         data.violation or '',
-        data.fineAmount or 0,
+        data.fineAmount,
         data.location or '',
         data.notes or ''
     }, function(insertId)
@@ -126,6 +129,8 @@ RegisterNetEvent('il_police:server:createTrafficReport', function(data)
                     TriggerClientEvent('il_police:client:notify', data.targetSource, 'error', 'קיבלת דוח תנועה על סך ' .. data.fineAmount .. '₪')
                 end
             end
+        else
+            TriggerClientEvent('il_police:client:notify', source, 'error', 'שגיאה בשמירת הדוח, נסה שוב')
         end
     end)
 end)
@@ -172,6 +177,8 @@ RegisterNetEvent('il_police:server:createArrest', function(data)
     if not officer then return end
 
     local arrestId = GenerateReportId('AR')
+    data.jailTime = math.min(math.max(tonumber(data.jailTime) or 0, 0), Config.MaxJailTime)
+    data.bailAmount = math.max(tonumber(data.bailAmount) or 0, 0)
 
     MySQL.insert('INSERT INTO il_police_arrests (arrest_id, officer_identifier, officer_name, suspect_name, suspect_id, charges, jail_time, bail_amount) VALUES (?, ?, ?, ?, ?, ?, ?, ?)', {
         arrestId,
@@ -180,7 +187,7 @@ RegisterNetEvent('il_police:server:createArrest', function(data)
         data.suspectName or '',
         data.suspectId or '',
         data.charges or '',
-        data.jailTime or 0,
+        data.jailTime,
         data.bailAmount or 0
     }, function(insertId)
         if insertId then
@@ -241,7 +248,7 @@ RegisterNetEvent('il_police:server:searchCitizen', function(searchName)
 
     for _, xPlayer in pairs(xPlayers) do
         local name = xPlayer.getName()
-        if string.find(string.lower(name), string.lower(searchName)) then
+        if string.find(string.lower(name), string.lower(searchName), 1, true) then
             table.insert(results, {
                 name = name,
                 identifier = xPlayer.getIdentifier(),
@@ -402,11 +409,18 @@ end)
 -- =============================================
 
 -- אזיקים
+local cuffedPlayers = {}
+
 RegisterNetEvent('il_police:server:cuffPlayer', function(targetId)
     local source = source
     if not IsPolice(source) then return end
+    cuffedPlayers[targetId] = not (cuffedPlayers[targetId] or false)
     TriggerClientEvent('il_police:client:getCuffed', targetId)
-    TriggerClientEvent('il_police:client:notify', source, 'info', 'השחקן נאזק')
+    if cuffedPlayers[targetId] then
+        TriggerClientEvent('il_police:client:notify', source, 'info', 'השחקן נאזק')
+    else
+        TriggerClientEvent('il_police:client:notify', source, 'info', 'השחקן שוחרר מאזיקים')
+    end
 end)
 
 -- חיפוש שחקן
@@ -490,6 +504,7 @@ end)
 -- =============================================
 AddEventHandler('playerDropped', function()
     onDutyOfficers[source] = nil
+    cuffedPlayers[source] = nil
 end)
 
 -- =============================================
