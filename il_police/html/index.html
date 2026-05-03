@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IL Police</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="radial.css">
+    <link rel="stylesheet" href="f6menu.css">
+    <link rel="stylesheet" href="mdt.css">
+</head>
+<body>
+    <!-- Notifications -->
+    <div id="notification-container"></div>
+
+    <!-- HUD -->
+    <div id="police-hud" style="display:none;">
+        <div class="hud-badge">
+            <i class="fas fa-shield-alt"></i>
+            <span id="hud-rank"></span>
+            <span id="hud-department" class="hud-dept"></span>
+        </div>
+    </div>
+
+    <!-- Dispatch Panel -->
+    <div id="dispatch-panel" style="display:none;">
+        <div class="dispatch-container">
+            <div class="dispatch-header">
+                <h2><i class="fas fa-headset"></i> מוקד משטרתי</h2>
+                <button class="close-btn" onclick="closeDispatch()"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="dispatch-body">
+                <div class="form-group">
+                    <label>קוד אירוע</label>
+                    <select id="dispatch-code">
+                        <option value="10-4">10-4 - הבנתי</option>
+                        <option value="10-8">10-8 - בשירות</option>
+                        <option value="10-20">10-20 - מיקום</option>
+                        <option value="10-31">10-31 - פשע בביצוע</option>
+                        <option value="10-32">10-32 - נשק חם</option>
+                        <option value="10-50">10-50 - תאונת דרכים</option>
+                        <option value="10-71">10-71 - ירי</option>
+                        <option value="10-80">10-80 - מרדף</option>
+                        <option value="10-99">10-99 - שוטר בסכנה</option>
+                        <option value="code-3">קוד 3 - חירום</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>הודעה</label>
+                    <textarea id="dispatch-message" placeholder="הקלד הודעה למוקד..." rows="3"></textarea>
+                </div>
+                <button class="btn btn-primary" onclick="sendDispatch()">
+                    <i class="fas fa-paper-plane"></i> שלח הודעה
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Search Results Overlay -->
+    <div id="search-results-panel" style="display:none;">
+        <div class="search-results-container">
+            <div class="search-results-header">
+                <h2><i class="fas fa-search"></i> תוצאות חיפוש</h2>
+                <button class="close-btn" onclick="closeSearchResults()"><i class="fas fa-times"></i></button>
+            </div>
+            <div id="search-results-body" class="search-results-body"></div>
+        </div>
+    </div>
+
+    <!-- Include component scripts -->
+    <script src="script.js"></script>
+    <script src="radial.js"></script>
+    <script src="f6menu.js"></script>
+    <script src="mdt.js"></script>
+</body>
+</html>

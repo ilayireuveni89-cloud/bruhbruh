@@ -1,0 +1,529 @@
+/* =============================================
+   MDT (Mobile Data Terminal) Styles
+   ============================================= */
+
+#mdt-panel {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.6);
+    z-index: 9000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+
+.mdt-container {
+    background: linear-gradient(145deg, #0d1117, #0a0e14);
+    border: 1px solid rgba(100,149,237,0.25);
+    border-radius: 12px;
+    width: 1100px;
+    height: 700px;
+    box-shadow: 0 30px 100px rgba(0,0,0,0.7), 0 0 40px rgba(100,149,237,0.1);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+/* MDT Header */
+.mdt-header {
+    background: linear-gradient(90deg, #050a15, #0d1a30);
+    padding: 12px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid rgba(100,149,237,0.2);
+}
+
+.mdt-header-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.mdt-logo {
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, #1a2a4a, #0a1628);
+    border: 2px solid #6495ED;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mdt-logo i {
+    font-size: 18px;
+    color: #FFD700;
+}
+
+.mdt-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: #6495ED;
+}
+
+.mdt-subtitle {
+    font-size: 11px;
+    color: rgba(255,255,255,0.4);
+}
+
+.mdt-header-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.mdt-officer-info {
+    text-align: left;
+    font-size: 12px;
+}
+
+.mdt-officer-name {
+    color: #e0e0e0;
+    font-weight: 600;
+}
+
+.mdt-officer-rank {
+    color: #6495ED;
+    font-size: 11px;
+}
+
+/* MDT Body */
+.mdt-body {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+}
+
+/* MDT Sidebar */
+.mdt-sidebar {
+    width: 200px;
+    background: rgba(0,0,0,0.4);
+    border-left: 1px solid rgba(100,149,237,0.1);
+    display: flex;
+    flex-direction: column;
+}
+
+.mdt-nav {
+    flex: 1;
+    padding: 8px 0;
+    overflow-y: auto;
+}
+
+.mdt-nav-item {
+    padding: 11px 18px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: rgba(255,255,255,0.5);
+    font-size: 13px;
+    font-weight: 500;
+    transition: all 0.2s;
+    border-right: 3px solid transparent;
+}
+
+.mdt-nav-item:hover {
+    background: rgba(100,149,237,0.08);
+    color: rgba(255,255,255,0.8);
+}
+
+.mdt-nav-item.active {
+    background: rgba(100,149,237,0.12);
+    color: #6495ED;
+    border-right-color: #6495ED;
+}
+
+.mdt-nav-item i {
+    width: 20px;
+    text-align: center;
+    font-size: 14px;
+}
+
+.mdt-nav-divider {
+    height: 1px;
+    background: rgba(100,149,237,0.1);
+    margin: 6px 14px;
+}
+
+/* MDT Content */
+.mdt-content {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+    background: rgba(0,0,0,0.1);
+}
+
+/* MDT Dashboard */
+.mdt-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.mdt-stat-card {
+    background: linear-gradient(145deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+    border: 1px solid rgba(100,149,237,0.12);
+    border-radius: 10px;
+    padding: 16px;
+    text-align: center;
+}
+
+.mdt-stat-value {
+    font-size: 28px;
+    font-weight: 800;
+    color: #6495ED;
+}
+
+.mdt-stat-label {
+    font-size: 11px;
+    color: rgba(255,255,255,0.5);
+    margin-top: 4px;
+}
+
+/* MDT Search */
+.mdt-search-bar {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.mdt-search-bar input {
+    flex: 1;
+    padding: 10px 16px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(100,149,237,0.2);
+    border-radius: 8px;
+    color: #e0e0e0;
+    font-family: 'Heebo', sans-serif;
+    font-size: 13px;
+    direction: rtl;
+}
+
+.mdt-search-bar input:focus {
+    outline: none;
+    border-color: #6495ED;
+    box-shadow: 0 0 0 3px rgba(100,149,237,0.1);
+}
+
+.mdt-search-bar button {
+    padding: 10px 20px;
+    background: linear-gradient(135deg, #3498db, #2980b9);
+    border: none;
+    border-radius: 8px;
+    color: #fff;
+    font-family: 'Heebo', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.2s;
+}
+
+.mdt-search-bar button:hover {
+    background: linear-gradient(135deg, #2980b9, #2471a3);
+}
+
+/* MDT Tables */
+.mdt-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+}
+
+.mdt-table th {
+    background: rgba(100,149,237,0.1);
+    color: #6495ED;
+    padding: 10px 12px;
+    text-align: right;
+    font-weight: 600;
+    font-size: 11px;
+    text-transform: uppercase;
+    border-bottom: 1px solid rgba(100,149,237,0.15);
+}
+
+.mdt-table td {
+    padding: 10px 12px;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    color: rgba(255,255,255,0.8);
+}
+
+.mdt-table tr:hover td {
+    background: rgba(100,149,237,0.05);
+}
+
+.mdt-table .status-badge {
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.status-active {
+    background: rgba(46,204,113,0.2);
+    color: #2ecc71;
+}
+
+.status-paid {
+    background: rgba(52,152,219,0.2);
+    color: #3498db;
+}
+
+.status-cancelled {
+    background: rgba(231,76,60,0.2);
+    color: #e74c3c;
+}
+
+.status-open {
+    background: rgba(243,156,18,0.2);
+    color: #f39c12;
+}
+
+.status-closed {
+    background: rgba(149,165,166,0.2);
+    color: #95a5a6;
+}
+
+.status-investigation {
+    background: rgba(155,89,182,0.2);
+    color: #9b59b6;
+}
+
+/* MDT Pagination */
+.mdt-pagination {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 15px;
+}
+
+.mdt-pagination button {
+    padding: 6px 14px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(100,149,237,0.15);
+    border-radius: 6px;
+    color: #e0e0e0;
+    font-family: 'Heebo', sans-serif;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.mdt-pagination button:hover {
+    background: rgba(100,149,237,0.15);
+    border-color: #6495ED;
+}
+
+.mdt-pagination button.active {
+    background: #6495ED;
+    color: #fff;
+}
+
+/* MDT Officers List */
+.mdt-officer-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(100,149,237,0.1);
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.mdt-officer-avatar {
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, #1a2a4a, #0a1628);
+    border: 1px solid rgba(100,149,237,0.3);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mdt-officer-avatar i {
+    font-size: 16px;
+    color: #6495ED;
+}
+
+.mdt-officer-details {
+    flex: 1;
+}
+
+.mdt-officer-details .name {
+    font-weight: 600;
+    font-size: 13px;
+    color: #e0e0e0;
+}
+
+.mdt-officer-details .rank-badge {
+    display: inline-block;
+    padding: 2px 8px;
+    background: rgba(100,149,237,0.15);
+    border-radius: 10px;
+    font-size: 11px;
+    color: #6495ED;
+    margin-top: 4px;
+}
+
+.mdt-officer-status {
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.mdt-officer-status.online {
+    background: rgba(46,204,113,0.2);
+    color: #2ecc71;
+}
+
+.mdt-officer-status.offline {
+    background: rgba(231,76,60,0.2);
+    color: #e74c3c;
+}
+
+/* MDT Section Title */
+.mdt-section-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #e0e0e0;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.mdt-section-title i {
+    color: #6495ED;
+}
+
+/* MDT BOLO Card */
+.mdt-bolo-card {
+    background: linear-gradient(145deg, rgba(243,156,18,0.08), rgba(243,156,18,0.03));
+    border: 1px solid rgba(243,156,18,0.2);
+    border-radius: 10px;
+    padding: 14px;
+    margin-bottom: 10px;
+}
+
+.mdt-bolo-card .bolo-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.mdt-bolo-card .bolo-type {
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 600;
+    background: rgba(243,156,18,0.2);
+    color: #f39c12;
+}
+
+.mdt-bolo-card .bolo-reason {
+    font-size: 14px;
+    font-weight: 600;
+    color: #e0e0e0;
+    margin-bottom: 4px;
+}
+
+.mdt-bolo-card .bolo-desc {
+    font-size: 12px;
+    color: rgba(255,255,255,0.6);
+}
+
+.mdt-bolo-card .bolo-info {
+    font-size: 11px;
+    color: rgba(255,255,255,0.4);
+    margin-top: 6px;
+}
+
+.mdt-bolo-card .bolo-cancel {
+    padding: 4px 12px;
+    background: rgba(231,76,60,0.2);
+    border: 1px solid rgba(231,76,60,0.3);
+    border-radius: 6px;
+    color: #e74c3c;
+    font-family: 'Heebo', sans-serif;
+    font-size: 11px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.mdt-bolo-card .bolo-cancel:hover {
+    background: rgba(231,76,60,0.4);
+}
+
+/* MDT Form inside MDT */
+.mdt-form {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(100,149,237,0.1);
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.mdt-form h3 {
+    font-size: 15px;
+    color: #6495ED;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Quick Actions inside MDT */
+.mdt-quick-actions {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.mdt-quick-action {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(100,149,237,0.1);
+    border-radius: 8px;
+    padding: 14px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.mdt-quick-action:hover {
+    background: rgba(100,149,237,0.1);
+    border-color: rgba(100,149,237,0.3);
+    transform: translateY(-2px);
+}
+
+.mdt-quick-action i {
+    font-size: 22px;
+    color: #6495ED;
+    margin-bottom: 6px;
+}
+
+.mdt-quick-action .label {
+    font-size: 11px;
+    color: rgba(255,255,255,0.7);
+    font-weight: 500;
+}
+
+/* No Results */
+.mdt-no-results {
+    text-align: center;
+    padding: 40px;
+    color: rgba(255,255,255,0.3);
+    font-size: 14px;
+}
+
+.mdt-no-results i {
+    font-size: 40px;
+    margin-bottom: 10px;
+    display: block;
+}
