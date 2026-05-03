@@ -1,0 +1,562 @@
+/* =============================================
+   VenusZone | RolePlay IL - Custom HUD
+   ============================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800;900&family=Rubik:wght@300;400;500;600;700;800;900&display=swap');
+
+:root {
+    --primary: #9b59b6;
+    --primary-light: #bb77d4;
+    --primary-dark: #7d3c98;
+    --accent: #e74c3c;
+    --success: #2ecc71;
+    --warning: #f39c12;
+    --info: #3498db;
+    --bg: rgba(10, 10, 20, 0.75);
+    --bg-light: rgba(20, 20, 40, 0.6);
+    --text: #ffffff;
+    --text-dim: rgba(255, 255, 255, 0.6);
+    --border: rgba(155, 89, 182, 0.25);
+    --glow: rgba(155, 89, 182, 0.4);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Heebo', 'Rubik', sans-serif;
+    overflow: hidden;
+    user-select: none;
+    color: var(--text);
+}
+
+#venus-hud {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+#venus-hud.visible {
+    opacity: 1;
+}
+
+/* =============================================
+   לוגו שרת - למעלה מרכז
+   ============================================= */
+#server-brand {
+    position: absolute;
+    top: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 100;
+}
+
+.brand-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--bg);
+    padding: 8px 20px;
+    border-radius: 25px;
+    border: 1px solid var(--border);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0 20px var(--glow), inset 0 0 20px rgba(155, 89, 182, 0.05);
+}
+
+.logo-icon {
+    width: 36px;
+    height: 36px;
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: 900;
+    color: #fff;
+    box-shadow: 0 0 12px var(--glow);
+    position: relative;
+}
+
+.logo-icon i {
+    display: none;
+}
+
+.logo-v {
+    font-family: 'Rubik', sans-serif;
+    font-weight: 900;
+    font-size: 20px;
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+}
+
+.brand-name {
+    font-family: 'Rubik', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    letter-spacing: 1.5px;
+    background: linear-gradient(90deg, var(--primary-light), #fff, var(--primary-light));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.brand-sub {
+    font-size: 10px;
+    color: var(--text-dim);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+/* =============================================
+   מידע שחקן - למעלה שמאל
+   ============================================= */
+#player-info {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.info-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--bg);
+    padding: 6px 14px;
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    backdrop-filter: blur(10px);
+    font-size: 12px;
+    min-width: 100px;
+}
+
+.info-item i {
+    color: var(--primary-light);
+    font-size: 11px;
+    width: 14px;
+    text-align: center;
+}
+
+/* =============================================
+   סרגלי סטטוס - למטה שמאל (מעל מיניאמפה)
+   ============================================= */
+#status-bars {
+    position: absolute;
+    bottom: 45px;
+    left: 170px;
+    width: 220px;
+}
+
+.status-bar-group {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.bar-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--bg);
+    padding: 5px 10px;
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(8px);
+    transition: all 0.3s ease;
+}
+
+.bar-container:hover {
+    border-color: var(--border);
+}
+
+.bar-icon {
+    width: 20px;
+    text-align: center;
+    font-size: 11px;
+}
+
+#health-bar-container .bar-icon { color: var(--accent); }
+#armor-bar-container .bar-icon { color: var(--info); }
+#hunger-bar-container .bar-icon { color: var(--warning); }
+#thirst-bar-container .bar-icon { color: var(--info); }
+
+.bar-track {
+    flex: 1;
+    height: 6px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 3px;
+    overflow: hidden;
+    position: relative;
+}
+
+.bar-fill {
+    height: 100%;
+    border-radius: 3px;
+    transition: width 0.5s ease;
+    position: relative;
+}
+
+.bar-fill::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 30px;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3));
+    border-radius: 3px;
+}
+
+.health-fill {
+    background: linear-gradient(90deg, #c0392b, var(--accent), #e74c3c);
+    box-shadow: 0 0 8px rgba(231, 76, 60, 0.4);
+}
+
+.armor-fill {
+    background: linear-gradient(90deg, #2471a3, var(--info), #5dade2);
+    box-shadow: 0 0 8px rgba(52, 152, 219, 0.4);
+}
+
+.hunger-fill {
+    background: linear-gradient(90deg, #d68910, var(--warning), #f5b041);
+    box-shadow: 0 0 8px rgba(243, 156, 18, 0.4);
+}
+
+.thirst-fill {
+    background: linear-gradient(90deg, #2e86c1, #3498db, #5dade2);
+    box-shadow: 0 0 8px rgba(52, 152, 219, 0.4);
+}
+
+.bar-value {
+    font-size: 10px;
+    font-weight: 600;
+    min-width: 24px;
+    text-align: left;
+    color: var(--text-dim);
+}
+
+/* Low health pulse */
+.bar-container.critical {
+    animation: criticalPulse 1s ease-in-out infinite;
+}
+
+@keyframes criticalPulse {
+    0%, 100% { border-color: rgba(255, 255, 255, 0.06); }
+    50% { border-color: rgba(231, 76, 60, 0.6); box-shadow: 0 0 10px rgba(231, 76, 60, 0.3); }
+}
+
+/* =============================================
+   מיקרופון - למטה שמאל
+   ============================================= */
+#mic-indicator {
+    position: absolute;
+    bottom: 195px;
+    left: 180px;
+    width: 32px;
+    height: 32px;
+    background: var(--bg);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--border);
+    backdrop-filter: blur(8px);
+    transition: all 0.3s ease;
+}
+
+#mic-icon {
+    font-size: 13px;
+    color: var(--text-dim);
+    transition: all 0.3s ease;
+}
+
+#mic-indicator.talking {
+    border-color: var(--success);
+    box-shadow: 0 0 15px rgba(46, 204, 113, 0.4);
+    background: rgba(46, 204, 113, 0.15);
+}
+
+#mic-indicator.talking #mic-icon {
+    color: var(--success);
+}
+
+/* =============================================
+   כסף - למעלה ימין
+   ============================================= */
+#money-display {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    align-items: flex-end;
+}
+
+.money-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--bg);
+    padding: 7px 16px;
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    backdrop-filter: blur(10px);
+    font-size: 13px;
+    font-weight: 600;
+    min-width: 120px;
+    justify-content: flex-end;
+    direction: ltr;
+    transition: all 0.3s ease;
+}
+
+.money-item i {
+    width: 16px;
+    text-align: center;
+    font-size: 12px;
+}
+
+.money-item.cash i { color: var(--success); }
+.money-item.bank i { color: var(--info); }
+.money-item.black i { color: var(--text-dim); }
+
+.money-item.cash span { color: var(--success); }
+.money-item.bank span { color: var(--info); }
+.money-item.black span { color: var(--text-dim); }
+
+.money-item.money-up {
+    animation: moneyUp 0.6s ease;
+}
+
+.money-item.money-down {
+    animation: moneyDown 0.6s ease;
+}
+
+@keyframes moneyUp {
+    0% { transform: scale(1); }
+    30% { transform: scale(1.08); border-color: var(--success); }
+    100% { transform: scale(1); }
+}
+
+@keyframes moneyDown {
+    0% { transform: scale(1); }
+    30% { transform: scale(0.95); border-color: var(--accent); }
+    100% { transform: scale(1); }
+}
+
+/* =============================================
+   מד מהירות - למטה ימין
+   ============================================= */
+#speedometer {
+    position: absolute;
+    bottom: 30px;
+    right: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    animation: slideIn 0.4s ease;
+}
+
+@keyframes slideIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.speedo-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.speedo-ring {
+    position: relative;
+    width: 130px;
+    height: 130px;
+}
+
+.speedo-svg {
+    width: 100%;
+    height: 100%;
+    transform: rotate(-90deg);
+}
+
+.speedo-track {
+    fill: none;
+    stroke: rgba(255, 255, 255, 0.06);
+    stroke-width: 5;
+}
+
+.speedo-progress {
+    fill: none;
+    stroke: url(#speedoGradient);
+    stroke: var(--primary);
+    stroke-width: 5;
+    stroke-linecap: round;
+    stroke-dasharray: 326.73;
+    stroke-dashoffset: 326.73;
+    transition: stroke-dashoffset 0.3s ease, stroke 0.3s ease;
+    filter: drop-shadow(0 0 6px var(--glow));
+}
+
+.speedo-inner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    background: var(--bg);
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--border);
+    backdrop-filter: blur(10px);
+}
+
+.speedo-speed {
+    font-family: 'Rubik', sans-serif;
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 1;
+    background: linear-gradient(180deg, #fff, var(--text-dim));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.speedo-unit {
+    font-size: 9px;
+    color: var(--text-dim);
+    letter-spacing: 2px;
+    font-weight: 500;
+}
+
+.speedo-details {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.speedo-detail {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+    background: var(--bg);
+    padding: 5px 12px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(8px);
+    min-width: 55px;
+}
+
+.detail-label {
+    font-size: 9px;
+    color: var(--text-dim);
+    letter-spacing: 1px;
+}
+
+.detail-value {
+    font-family: 'Rubik', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--primary-light);
+}
+
+.fuel-bar-track {
+    width: 50px;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.fuel-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent), var(--warning), var(--success));
+    border-radius: 2px;
+    transition: width 0.5s ease;
+    width: 100%;
+}
+
+/* =============================================
+   מצפן
+   ============================================= */
+#compass {
+    margin-top: 5px;
+}
+
+.compass-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--bg);
+    padding: 5px 14px;
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(8px);
+}
+
+.compass-arrow {
+    color: var(--primary-light);
+    font-size: 12px;
+    transition: transform 0.3s ease;
+}
+
+.compass-heading {
+    font-family: 'Rubik', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-dim);
+    min-width: 25px;
+    text-align: center;
+}
+
+/* =============================================
+   אנימציות כלליות
+   ============================================= */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes scaleIn {
+    from { opacity: 0; transform: scale(0.8); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+/* Responsive - מסכים קטנים */
+@media (max-width: 1400px) {
+    #status-bars {
+        left: 140px;
+        width: 190px;
+    }
+
+    .speedo-ring {
+        width: 110px;
+        height: 110px;
+    }
+
+    .speedo-inner {
+        width: 76px;
+        height: 76px;
+    }
+
+    .speedo-speed {
+        font-size: 26px;
+    }
+}

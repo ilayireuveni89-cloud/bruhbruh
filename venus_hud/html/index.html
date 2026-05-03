@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VenusZone HUD</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800;900&family=Rubik:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="venus-hud">
+        <!-- לוגו שרת -->
+        <div id="server-brand">
+            <div class="brand-logo">
+                <div class="logo-icon">
+                    <i class="fas fa-planet-ringed"></i>
+                    <span class="logo-v">V</span>
+                </div>
+                <div class="brand-text">
+                    <div class="brand-name" id="brand-name">VenusZone</div>
+                    <div class="brand-sub" id="brand-sub">RolePlay IL</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- מידע שחקן -->
+        <div id="player-info">
+            <div class="info-item" id="server-id-box">
+                <i class="fas fa-hashtag"></i>
+                <span id="server-id">0</span>
+            </div>
+            <div class="info-item" id="job-box">
+                <i class="fas fa-briefcase"></i>
+                <span id="job-label">אזרח</span>
+            </div>
+            <div class="info-item" id="clock-box">
+                <i class="fas fa-clock"></i>
+                <span id="clock-label">00:00</span>
+            </div>
+        </div>
+
+        <!-- סרגלי בריאות -->
+        <div id="status-bars">
+            <div class="status-bar-group">
+                <div class="bar-container" id="health-bar-container">
+                    <div class="bar-icon"><i class="fas fa-heart"></i></div>
+                    <div class="bar-track">
+                        <div class="bar-fill health-fill" id="health-bar" style="width: 100%"></div>
+                    </div>
+                    <div class="bar-value" id="health-value">100</div>
+                </div>
+
+                <div class="bar-container" id="armor-bar-container">
+                    <div class="bar-icon"><i class="fas fa-shield-alt"></i></div>
+                    <div class="bar-track">
+                        <div class="bar-fill armor-fill" id="armor-bar" style="width: 0%"></div>
+                    </div>
+                    <div class="bar-value" id="armor-value">0</div>
+                </div>
+
+                <div class="bar-container" id="hunger-bar-container">
+                    <div class="bar-icon"><i class="fas fa-utensils"></i></div>
+                    <div class="bar-track">
+                        <div class="bar-fill hunger-fill" id="hunger-bar" style="width: 100%"></div>
+                    </div>
+                    <div class="bar-value" id="hunger-value">100</div>
+                </div>
+
+                <div class="bar-container" id="thirst-bar-container">
+                    <div class="bar-icon"><i class="fas fa-tint"></i></div>
+                    <div class="bar-track">
+                        <div class="bar-fill thirst-fill" id="thirst-bar" style="width: 100%"></div>
+                    </div>
+                    <div class="bar-value" id="thirst-value">100</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- מיקרופון -->
+        <div id="mic-indicator">
+            <i class="fas fa-microphone" id="mic-icon"></i>
+        </div>
+
+        <!-- כסף -->
+        <div id="money-display">
+            <div class="money-item cash">
+                <i class="fas fa-wallet"></i>
+                <span id="cash-amount">$0</span>
+            </div>
+            <div class="money-item bank">
+                <i class="fas fa-university"></i>
+                <span id="bank-amount">$0</span>
+            </div>
+            <div class="money-item black" id="black-money-box">
+                <i class="fas fa-money-bill-wave"></i>
+                <span id="black-amount">$0</span>
+            </div>
+        </div>
+
+        <!-- מד מהירות -->
+        <div id="speedometer" style="display: none;">
+            <div class="speedo-container">
+                <div class="speedo-ring">
+                    <svg viewBox="0 0 120 120" class="speedo-svg">
+                        <circle cx="60" cy="60" r="52" class="speedo-track"/>
+                        <circle cx="60" cy="60" r="52" class="speedo-progress" id="speedo-arc"/>
+                    </svg>
+                    <div class="speedo-inner">
+                        <div class="speedo-speed" id="speedo-speed">0</div>
+                        <div class="speedo-unit" id="speedo-unit">KM/H</div>
+                    </div>
+                </div>
+                <div class="speedo-details">
+                    <div class="speedo-detail">
+                        <span class="detail-label">הילוך</span>
+                        <span class="detail-value" id="speedo-gear">N</span>
+                    </div>
+                    <div class="speedo-detail">
+                        <span class="detail-label">דלק</span>
+                        <div class="fuel-bar-track">
+                            <div class="fuel-bar-fill" id="fuel-bar"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- מצפן -->
+            <div id="compass" style="display: none;">
+                <div class="compass-container">
+                    <div class="compass-arrow" id="compass-arrow">
+                        <i class="fas fa-location-arrow"></i>
+                    </div>
+                    <div class="compass-heading" id="compass-heading">N</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
