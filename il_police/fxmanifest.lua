@@ -28,13 +28,10 @@ files {
     'html/index.html',
     'html/style.css',
     'html/script.js',
-    'html/mdt.html',
     'html/mdt.css',
     'html/mdt.js',
-    'html/radial.html',
     'html/radial.css',
     'html/radial.js',
-    'html/f6menu.html',
     'html/f6menu.css',
     'html/f6menu.js'
 }
