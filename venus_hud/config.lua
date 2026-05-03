@@ -1,47 +1,66 @@
 Config = {}
 
 Config.ServerName = 'VenusZone'
-Config.ServerSubtitle = 'RolePlay IL'
+Config.ServerTagline = 'RolePlay IL'
 
--- עדכון HUD כל X מילישניות
-Config.UpdateInterval = 200
+-- עדכון HUD (מילישניות)
+Config.UpdateInterval = 150
+Config.MoneyUpdateInterval = 2000
 
--- הצגת מזהה שרת
-Config.ShowServerId = true
+-- מפתח פתיחת הגדרות HUD
+Config.SettingsKey = 'F9' -- 56 = F9
+Config.SettingsCommand = 'hud'
 
--- הצגת מהירות ברכב
-Config.ShowSpeedometer = true
+-- מקש חגורת בטיחות
+Config.SeatbeltKey = 'K'
 
--- יחידת מהירות: 'kmh' או 'mph'
-Config.SpeedUnit = 'kmh'
+-- יחידת מהירות ברירת מחדל
+Config.DefaultSpeedUnit = 'kmh' -- 'kmh' | 'mph'
 
--- הצגת מצפן ברכב
-Config.ShowCompass = true
+-- סגנון מד מהירות ברירת מחדל
+Config.DefaultSpeedoStyle = 'arc' -- 'arc' | 'digital' | 'minimal'
 
--- הצגת מיקרופון
-Config.ShowMicrophone = true
+-- צבעי ברירת מחדל
+Config.DefaultColors = {
+    health = '#e74c3c',
+    armor = '#3498db',
+    hunger = '#f39c12',
+    thirst = '#00bcd4',
+    stamina = '#2ecc71',
+    oxygen = '#9b59b6',
+    stress = '#e91e63',
+}
 
--- הצגת כסף
-Config.ShowMoney = true
+-- הצגת אלמנטים ברירת מחדל
+Config.DefaultVisible = {
+    health = true,
+    armor = true,
+    hunger = true,
+    thirst = true,
+    stamina = false,
+    oxygen = false,
+    money = true,
+    job = true,
+    serverId = true,
+    clock = true,
+    mic = true,
+    speedometer = true,
+    compass = true,
+    seatbelt = true,
+    fuel = true,
+    serverLogo = true,
+    streetName = true,
+}
 
--- הצגת שעון
-Config.ShowClock = true
+-- חגורת בטיחות
+Config.Seatbelt = {
+    enabled = true,
+    ejectSpeed = 80, -- מהירות מינימלית לזריקה מרכב
+    ejectChance = 70, -- אחוז סיכוי לזריקה
+}
 
--- הצגת עבודה ודרגה
-Config.ShowJob = true
+-- סטטוס (esx_status)
+Config.UseStatus = true
 
--- הצגת רעב/צמא (דורש esx_status)
-Config.ShowStatus = true
-
--- אנימציות חלקות
-Config.SmoothAnimations = true
-
--- הסתרת HUD כשהתפריט פתוח
-Config.HideOnPause = true
-
--- צבע ראשי (ניתן לשנות)
-Config.PrimaryColor = '#9b59b6' -- סגול - Venus
-Config.AccentColor = '#e74c3c'  -- אדום
-Config.SuccessColor = '#2ecc71' -- ירוק
-Config.WarningColor = '#f39c12' -- כתום
-Config.InfoColor = '#3498db'    -- כחול
+-- רחוב
+Config.ShowStreetName = true

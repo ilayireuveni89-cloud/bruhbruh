@@ -9,133 +9,246 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!-- ============ HUD ============ -->
     <div id="venus-hud">
-        <!-- לוגו שרת -->
-        <div id="server-brand">
-            <div class="brand-logo">
-                <div class="logo-icon">
-                    <i class="fas fa-planet-ringed"></i>
-                    <span class="logo-v">V</span>
-                </div>
-                <div class="brand-text">
-                    <div class="brand-name" id="brand-name">VenusZone</div>
-                    <div class="brand-sub" id="brand-sub">RolePlay IL</div>
-                </div>
+
+        <!-- לוגו שרת - למעלה מרכז -->
+        <div id="hud-logo">
+            <div class="logo-pill">
+                <div class="logo-circle">V</div>
+                <span class="logo-name" id="logo-name">VenusZone</span>
+                <span class="logo-divider">|</span>
+                <span class="logo-tag" id="logo-tag">RolePlay IL</span>
             </div>
         </div>
 
-        <!-- מידע שחקן -->
-        <div id="player-info">
-            <div class="info-item" id="server-id-box">
-                <i class="fas fa-hashtag"></i>
-                <span id="server-id">0</span>
+        <!-- מידע שחקן - למעלה שמאל -->
+        <div id="hud-player-info">
+            <div class="pi-item" id="pi-id"><i class="fas fa-id-badge"></i> <span id="pi-id-val">0</span></div>
+            <div class="pi-item" id="pi-job"><i class="fas fa-briefcase"></i> <span id="pi-job-val">אזרח</span></div>
+            <div class="pi-item" id="pi-clock"><i class="far fa-clock"></i> <span id="pi-clock-val">00:00</span></div>
+        </div>
+
+        <!-- כסף - למעלה ימין -->
+        <div id="hud-money">
+            <div class="money-pill cash-pill"><i class="fas fa-wallet"></i> <span id="money-cash">$0</span></div>
+            <div class="money-pill bank-pill"><i class="fas fa-landmark"></i> <span id="money-bank">$0</span></div>
+            <div class="money-pill black-pill" id="money-black-pill"><i class="fas fa-sack-dollar"></i> <span id="money-black">$0</span></div>
+        </div>
+
+        <!-- סטטוס עיגולים - למטה שמאל ליד מיניאמפה -->
+        <div id="hud-circles">
+            <div class="circle-indicator" id="ci-health" data-type="health">
+                <svg viewBox="0 0 44 44"><circle class="track" cx="22" cy="22" r="18"/><circle class="fill" id="arc-health" cx="22" cy="22" r="18"/></svg>
+                <div class="circle-icon"><i class="fas fa-heart"></i></div>
             </div>
-            <div class="info-item" id="job-box">
-                <i class="fas fa-briefcase"></i>
-                <span id="job-label">אזרח</span>
+            <div class="circle-indicator" id="ci-armor" data-type="armor">
+                <svg viewBox="0 0 44 44"><circle class="track" cx="22" cy="22" r="18"/><circle class="fill" id="arc-armor" cx="22" cy="22" r="18"/></svg>
+                <div class="circle-icon"><i class="fas fa-shield-alt"></i></div>
             </div>
-            <div class="info-item" id="clock-box">
-                <i class="fas fa-clock"></i>
-                <span id="clock-label">00:00</span>
+            <div class="circle-indicator" id="ci-hunger" data-type="hunger">
+                <svg viewBox="0 0 44 44"><circle class="track" cx="22" cy="22" r="18"/><circle class="fill" id="arc-hunger" cx="22" cy="22" r="18"/></svg>
+                <div class="circle-icon"><i class="fas fa-drumstick-bite"></i></div>
+            </div>
+            <div class="circle-indicator" id="ci-thirst" data-type="thirst">
+                <svg viewBox="0 0 44 44"><circle class="track" cx="22" cy="22" r="18"/><circle class="fill" id="arc-thirst" cx="22" cy="22" r="18"/></svg>
+                <div class="circle-icon"><i class="fas fa-tint"></i></div>
+            </div>
+            <div class="circle-indicator hidden" id="ci-stamina" data-type="stamina">
+                <svg viewBox="0 0 44 44"><circle class="track" cx="22" cy="22" r="18"/><circle class="fill" id="arc-stamina" cx="22" cy="22" r="18"/></svg>
+                <div class="circle-icon"><i class="fas fa-running"></i></div>
+            </div>
+            <div class="circle-indicator hidden" id="ci-oxygen" data-type="oxygen">
+                <svg viewBox="0 0 44 44"><circle class="track" cx="22" cy="22" r="18"/><circle class="fill" id="arc-oxygen" cx="22" cy="22" r="18"/></svg>
+                <div class="circle-icon"><i class="fas fa-lungs"></i></div>
+            </div>
+            <div class="circle-indicator mic-circle" id="ci-mic">
+                <div class="circle-icon mic-icon"><i class="fas fa-microphone" id="mic-i"></i></div>
             </div>
         </div>
 
-        <!-- סרגלי בריאות -->
-        <div id="status-bars">
-            <div class="status-bar-group">
-                <div class="bar-container" id="health-bar-container">
-                    <div class="bar-icon"><i class="fas fa-heart"></i></div>
-                    <div class="bar-track">
-                        <div class="bar-fill health-fill" id="health-bar" style="width: 100%"></div>
-                    </div>
-                    <div class="bar-value" id="health-value">100</div>
-                </div>
-
-                <div class="bar-container" id="armor-bar-container">
-                    <div class="bar-icon"><i class="fas fa-shield-alt"></i></div>
-                    <div class="bar-track">
-                        <div class="bar-fill armor-fill" id="armor-bar" style="width: 0%"></div>
-                    </div>
-                    <div class="bar-value" id="armor-value">0</div>
-                </div>
-
-                <div class="bar-container" id="hunger-bar-container">
-                    <div class="bar-icon"><i class="fas fa-utensils"></i></div>
-                    <div class="bar-track">
-                        <div class="bar-fill hunger-fill" id="hunger-bar" style="width: 100%"></div>
-                    </div>
-                    <div class="bar-value" id="hunger-value">100</div>
-                </div>
-
-                <div class="bar-container" id="thirst-bar-container">
-                    <div class="bar-icon"><i class="fas fa-tint"></i></div>
-                    <div class="bar-track">
-                        <div class="bar-fill thirst-fill" id="thirst-bar" style="width: 100%"></div>
-                    </div>
-                    <div class="bar-value" id="thirst-value">100</div>
-                </div>
-            </div>
+        <!-- שם רחוב -->
+        <div id="hud-street">
+            <span id="street-name"></span>
         </div>
 
-        <!-- מיקרופון -->
-        <div id="mic-indicator">
-            <i class="fas fa-microphone" id="mic-icon"></i>
-        </div>
-
-        <!-- כסף -->
-        <div id="money-display">
-            <div class="money-item cash">
-                <i class="fas fa-wallet"></i>
-                <span id="cash-amount">$0</span>
-            </div>
-            <div class="money-item bank">
-                <i class="fas fa-university"></i>
-                <span id="bank-amount">$0</span>
-            </div>
-            <div class="money-item black" id="black-money-box">
-                <i class="fas fa-money-bill-wave"></i>
-                <span id="black-amount">$0</span>
-            </div>
-        </div>
-
-        <!-- מד מהירות -->
-        <div id="speedometer" style="display: none;">
-            <div class="speedo-container">
-                <div class="speedo-ring">
-                    <svg viewBox="0 0 120 120" class="speedo-svg">
-                        <circle cx="60" cy="60" r="52" class="speedo-track"/>
-                        <circle cx="60" cy="60" r="52" class="speedo-progress" id="speedo-arc"/>
+        <!-- רכב HUD -->
+        <div id="hud-vehicle" style="display:none;">
+            <!-- מד מהירות Arc -->
+            <div id="speedo-arc" class="speedo-style">
+                <div class="speedo-arc-wrap">
+                    <svg viewBox="0 0 160 160" class="speedo-svg">
+                        <circle class="speedo-bg-ring" cx="80" cy="80" r="68"/>
+                        <circle class="speedo-fg-ring" id="speedo-ring" cx="80" cy="80" r="68"/>
                     </svg>
-                    <div class="speedo-inner">
-                        <div class="speedo-speed" id="speedo-speed">0</div>
-                        <div class="speedo-unit" id="speedo-unit">KM/H</div>
+                    <div class="speedo-center">
+                        <div class="speedo-val" id="speedo-val">0</div>
+                        <div class="speedo-label" id="speedo-label">KM/H</div>
                     </div>
                 </div>
-                <div class="speedo-details">
-                    <div class="speedo-detail">
-                        <span class="detail-label">הילוך</span>
-                        <span class="detail-value" id="speedo-gear">N</span>
+                <div class="speedo-bar-row">
+                    <div class="speedo-info-pill"><span class="sip-label">הילוך</span><span class="sip-val" id="speedo-gear">N</span></div>
+                    <div class="speedo-info-pill fuel-pill"><span class="sip-label">דלק</span><div class="fuel-track"><div class="fuel-fill" id="speedo-fuel"></div></div></div>
+                    <div class="speedo-info-pill" id="seatbelt-pill"><i class="fas fa-user-shield" id="seatbelt-icon"></i></div>
+                </div>
+            </div>
+
+            <!-- מד מהירות Digital -->
+            <div id="speedo-digital" class="speedo-style" style="display:none;">
+                <div class="digi-box">
+                    <div class="digi-speed" id="digi-speed">0</div>
+                    <div class="digi-unit" id="digi-unit">KM/H</div>
+                    <div class="digi-row">
+                        <div class="digi-info"><span>G</span><span id="digi-gear">N</span></div>
+                        <div class="digi-fuel-wrap"><div class="digi-fuel" id="digi-fuel"></div></div>
+                        <div class="digi-info" id="digi-seatbelt"><i class="fas fa-user-shield"></i></div>
                     </div>
-                    <div class="speedo-detail">
-                        <span class="detail-label">דלק</span>
-                        <div class="fuel-bar-track">
-                            <div class="fuel-bar-fill" id="fuel-bar"></div>
+                </div>
+            </div>
+
+            <!-- מד מהירות Minimal -->
+            <div id="speedo-minimal" class="speedo-style" style="display:none;">
+                <div class="mini-speed" id="mini-speed">0</div>
+                <div class="mini-unit" id="mini-unit">KM/H</div>
+            </div>
+
+            <!-- מצפן -->
+            <div id="hud-compass">
+                <div class="compass-strip">
+                    <div class="compass-indicator">▼</div>
+                    <div class="compass-bar" id="compass-bar">
+                        <span class="compass-dir" data-deg="0">N</span>
+                        <span class="compass-dir" data-deg="45">NE</span>
+                        <span class="compass-dir" data-deg="90">E</span>
+                        <span class="compass-dir" data-deg="135">SE</span>
+                        <span class="compass-dir" data-deg="180">S</span>
+                        <span class="compass-dir" data-deg="225">SW</span>
+                        <span class="compass-dir" data-deg="270">W</span>
+                        <span class="compass-dir" data-deg="315">NW</span>
+                    </div>
+                </div>
+                <div class="compass-deg" id="compass-deg">0°</div>
+            </div>
+        </div>
+
+        <!-- התראות -->
+        <div id="hud-notifications"></div>
+    </div>
+
+    <!-- ============ תפריט הגדרות ============ -->
+    <div id="settings-panel" style="display:none;">
+        <div class="settings-overlay" onclick="closeSettings()"></div>
+        <div class="settings-window">
+            <div class="settings-header">
+                <div class="settings-title"><i class="fas fa-cog"></i> הגדרות HUD</div>
+                <div class="settings-subtitle">VenusZone | RolePlay IL</div>
+                <button class="settings-close" onclick="closeSettings()"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="settings-body">
+                <!-- טאבים -->
+                <div class="settings-tabs">
+                    <div class="settings-tab active" onclick="switchTab('display')" data-tab="display"><i class="fas fa-eye"></i> תצוגה</div>
+                    <div class="settings-tab" onclick="switchTab('colors')" data-tab="colors"><i class="fas fa-palette"></i> צבעים</div>
+                    <div class="settings-tab" onclick="switchTab('vehicle')" data-tab="vehicle"><i class="fas fa-car"></i> רכב</div>
+                    <div class="settings-tab" onclick="switchTab('general')" data-tab="general"><i class="fas fa-sliders-h"></i> כללי</div>
+                </div>
+
+                <!-- תוכן טאבים -->
+                <div class="tab-content active" id="tab-display">
+                    <div class="setting-section-title">הצגה / הסתרה</div>
+                    <div class="toggle-grid">
+                        <div class="toggle-item"><label><input type="checkbox" id="tog-health" checked onchange="toggleElement('health')"> <span class="tl">בריאות</span></label></div>
+                        <div class="toggle-item"><label><input type="checkbox" id="tog-armor" checked onchange="toggleElement('armor')"> <span class="tl">שריון</span></label></div>
+                        <div class="toggle-item"><label><input type="checkbox" id="tog-hunger" checked onchange="toggleElement('hunger')"> <span class="tl">רעב</span></label></div>
+                        <div class="toggle-item"><label><input type="checkbox" id="tog-thirst" checked onchange="toggleElement('thirst')"> <span class="tl">צמא</span></label></div>
+                        <div class="toggle-item"><label><input type="checkbox" id="tog-stamina" onchange="toggleElement('stamina')"> <span class="tl">סטמינה</span></label></div>
+                        <div class="toggle-item"><label><input type="checkbox" id="tog-oxygen" onchange="toggleElement('oxygen')"> <span class="tl">חמצן</span></label></div>
+                        <div class="toggle-item"><label><input type="checkbox" id="tog-money" checked onchange="toggleElement('money')"> <span class="tl">כסף</span></label></div>
+                        <div class="toggle-item"><label><input type="checkbox" id="tog-job" checked onchange="toggleElement('job')"> <span class="tl">עבודה</span></label></div>
+                        <div class="toggle-item"><label><input type="checkbox" id="tog-serverId" checked onchange="toggleElement('serverId')"> <span class="tl">מזהה</span></label></div>
+                        <div class="toggle-item"><label><input type="checkbox" id="tog-clock" checked onchange="toggleElement('clock')"> <span class="tl">שעון</span></label></div>
+                        <div class="toggle-item"><label><input type="checkbox" id="tog-mic" checked onchange="toggleElement('mic')"> <span class="tl">מיקרופון</span></label></div>
+                        <div class="toggle-item"><label><input type="checkbox" id="tog-serverLogo" checked onchange="toggleElement('serverLogo')"> <span class="tl">לוגו שרת</span></label></div>
+                        <div class="toggle-item"><label><input type="checkbox" id="tog-streetName" checked onchange="toggleElement('streetName')"> <span class="tl">שם רחוב</span></label></div>
+                    </div>
+
+                    <div class="setting-section-title">גודל HUD</div>
+                    <div class="slider-row">
+                        <input type="range" id="hud-scale" min="60" max="140" value="100" oninput="setScale(this.value)">
+                        <span id="scale-val">100%</span>
+                    </div>
+                </div>
+
+                <div class="tab-content" id="tab-colors">
+                    <div class="setting-section-title">צבעי סרגלים</div>
+                    <div class="color-grid">
+                        <div class="color-item"><label>בריאות</label><input type="color" id="col-health" value="#e74c3c" onchange="setColor('health', this.value)"></div>
+                        <div class="color-item"><label>שריון</label><input type="color" id="col-armor" value="#3498db" onchange="setColor('armor', this.value)"></div>
+                        <div class="color-item"><label>רעב</label><input type="color" id="col-hunger" value="#f39c12" onchange="setColor('hunger', this.value)"></div>
+                        <div class="color-item"><label>צמא</label><input type="color" id="col-thirst" value="#00bcd4" onchange="setColor('thirst', this.value)"></div>
+                        <div class="color-item"><label>סטמינה</label><input type="color" id="col-stamina" value="#2ecc71" onchange="setColor('stamina', this.value)"></div>
+                        <div class="color-item"><label>חמצן</label><input type="color" id="col-oxygen" value="#9b59b6" onchange="setColor('oxygen', this.value)"></div>
+                    </div>
+                    <button class="btn-reset" onclick="resetColors()"><i class="fas fa-undo"></i> איפוס צבעים</button>
+                </div>
+
+                <div class="tab-content" id="tab-vehicle">
+                    <div class="setting-section-title">סגנון מד מהירות</div>
+                    <div class="style-cards">
+                        <div class="style-card active" data-style="arc" onclick="setSpeedoStyle('arc')">
+                            <div class="style-preview arc-prev"><div class="arc-p-circle"></div></div>
+                            <span>Arc</span>
+                        </div>
+                        <div class="style-card" data-style="digital" onclick="setSpeedoStyle('digital')">
+                            <div class="style-preview digi-prev"><span>120</span></div>
+                            <span>Digital</span>
+                        </div>
+                        <div class="style-card" data-style="minimal" onclick="setSpeedoStyle('minimal')">
+                            <div class="style-preview mini-prev"><span>88</span></div>
+                            <span>Minimal</span>
                         </div>
                     </div>
-                </div>
-            </div>
-            <!-- מצפן -->
-            <div id="compass" style="display: none;">
-                <div class="compass-container">
-                    <div class="compass-arrow" id="compass-arrow">
-                        <i class="fas fa-location-arrow"></i>
+
+                    <div class="setting-section-title">הגדרות רכב</div>
+                    <div class="toggle-grid">
+                        <div class="toggle-item"><label><input type="checkbox" id="tog-speedometer" checked onchange="toggleElement('speedometer')"> <span class="tl">מד מהירות</span></label></div>
+                        <div class="toggle-item"><label><input type="checkbox" id="tog-compass" checked onchange="toggleElement('compass')"> <span class="tl">מצפן</span></label></div>
+                        <div class="toggle-item"><label><input type="checkbox" id="tog-seatbelt" checked onchange="toggleElement('seatbelt')"> <span class="tl">חגורת בטיחות</span></label></div>
+                        <div class="toggle-item"><label><input type="checkbox" id="tog-fuel" checked onchange="toggleElement('fuel')"> <span class="tl">דלק</span></label></div>
                     </div>
-                    <div class="compass-heading" id="compass-heading">N</div>
+
+                    <div class="setting-section-title">יחידת מהירות</div>
+                    <div class="radio-row">
+                        <label class="radio-item"><input type="radio" name="speed-unit" value="kmh" checked onchange="setSpeedUnit('kmh')"> KM/H</label>
+                        <label class="radio-item"><input type="radio" name="speed-unit" value="mph" onchange="setSpeedUnit('mph')"> MPH</label>
+                    </div>
+                </div>
+
+                <div class="tab-content" id="tab-general">
+                    <div class="setting-section-title">פעולות</div>
+                    <button class="btn-action" onclick="resetAll()"><i class="fas fa-trash-alt"></i> איפוס כל ההגדרות</button>
+
+                    <div class="setting-section-title">מקשים</div>
+                    <div class="keybind-list">
+                        <div class="keybind-item"><span>הגדרות HUD</span><kbd>F9</kbd></div>
+                        <div class="keybind-item"><span>חגורת בטיחות</span><kbd>K</kbd></div>
+                        <div class="keybind-item"><span>הסתר HUD</span><kbd>/hud</kbd></div>
+                    </div>
+
+                    <div class="setting-section-title">אודות</div>
+                    <div class="about-box">
+                        <div class="about-logo">V</div>
+                        <div>
+                            <div class="about-name">VenusZone HUD</div>
+                            <div class="about-ver">גרסה 2.0</div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <script src="hud.js"></script>
+    <script src="settings.js"></script>
 </body>
 </html>
